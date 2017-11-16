@@ -1,4 +1,4 @@
-package cs410.javacafe;
+package cs410.javacafe.POJO;
 
 import javax.persistence.*;
 

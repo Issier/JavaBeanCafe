@@ -1,31 +1,24 @@
 package cs410.javacafe;
 
+import cs410.javacafe.DAO.MenuItemRepository;
+import cs410.javacafe.POJO.Customer;
+import cs410.javacafe.DAO.CustomerRepository;
+import cs410.javacafe.POJO.MenuItem;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.util.Map;
 
 @org.springframework.stereotype.Controller
 public class Controller {
     @Autowired
-    CustomerRepository customerRepository;
+    MenuItemRepository menuItemRepository;
 
     @GetMapping("/")
     public ModelAndView home(){
         ModelAndView result = new ModelAndView("home");
-        customerRepository.save(new Customer("JohnDoe", "John", "Doe", "unsltdPss", "stuff"));
-        result.addObject("cust", customerRepository.findByCustID("JohnDoe"));
+        menuItemRepository.save(new MenuItem("Latte", 3.50, 200L, "Not very healthy lad"));
+        result.addObject("cust", menuItemRepository.findMenuItemByItemName("Latte"));
         return result;
     }
-
-//    @PostMapping("/")
-//    public String form(Map<String, Object> model){
-//        return "";
-//    }
 
 }

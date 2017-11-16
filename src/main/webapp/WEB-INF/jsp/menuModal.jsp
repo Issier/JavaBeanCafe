@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- Modal -->
 <div class="modal fade" id="menuModal" tabindex="-1" role="dialog" aria-labelledby="menuModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -9,7 +10,24 @@
                 </button>
             </div>
             <div class="modal-body">
-                ...
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Item Name</th>
+                        <th scope="col">Item Cost</th>
+                        <th scope="col">Health Facts</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <c:forEach items="${cust}" var="menuItem">
+                        <tr>
+                            <th scope="row"><c:out value="${menuItem.getItemName()}" /></th>
+                            <td><c:out value="${menuItem.getItemCost()}"/> </td>
+                            <td><c:out value="${menuItem.getHealthFacts()}"/></td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
