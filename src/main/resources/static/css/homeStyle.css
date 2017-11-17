@@ -7,13 +7,19 @@ body{
     text-align: center;
 }
 
-.modal, #title, #menu, #coffeeVote, #contact, #carouselBody{
+#title, #menu, #coffeeVote, #contact, #carouselBody{
     background: #000000 url("../images/board.jpg");
     background-size: cover;
 }
 
 .modal{
-    color: black;
+    color: white;
+    background: maroon url("../images/cherryTable.jpg");
+    background-size: cover;
+}
+
+.modal-content{
+    background: black url("../images/board.jpg");
 }
 
 .card-img-top{
