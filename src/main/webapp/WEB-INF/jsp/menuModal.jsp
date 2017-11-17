@@ -19,7 +19,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${cust}" var="menuItem">
+                    <c:forEach items="${menu}" var="menuItem">
                         <tr>
                             <th scope="row"><c:out value="${menuItem.getItemName()}" /></th>
                             <td><c:out value="${menuItem.getItemCost()}"/> </td>

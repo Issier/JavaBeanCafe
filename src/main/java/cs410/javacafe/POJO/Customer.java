@@ -1,22 +1,25 @@
 package cs410.javacafe.POJO;
 
 import javax.persistence.*;
+import java.util.Set;
 
-@Entity(name="Customer")
+@Entity(name="customer")
+@Table(name = "customer")
 public class Customer {
-    private String custID;
-    private String firstName;
-    private String lastName;
+    private String custId;
+    private String custFname;
+    private String custLname;
     private String custPswd;
     private String pswdSalt;
+    private Set<Orders> orders;
 
     protected Customer(){
     }
 
-    public Customer(String custID, String firstName, String lastName, String custPswd, String pswdSalt) {
-        this.custID = custID;
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public Customer(String custId, String firstName, String lastName, String custPswd, String pswdSalt) {
+        this.custId = custId;
+        this.custFname = firstName;
+        this.custLname = lastName;
         this.custPswd = custPswd;
         this.pswdSalt = pswdSalt;
     }
@@ -38,34 +41,46 @@ public class Customer {
     }
 
     @Id
-    public String getCustID(){
-        return custID;
+    @Column(name="cust_id")
+    public String getCustId() {
+        return custId;
     }
 
-    public void setCustID(String custID){ this.custID = custID;}
-
-    public String getFirstName() {
-        return firstName;
+    public void setCustId(String custId) {
+        this.custId = custId;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public String getCustFname() {
+        return custFname;
     }
 
-    public String getLastName() {
-        return lastName;
+    public void setCustFname(String custFname) {
+        this.custFname = custFname;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public String getCustLname() {
+        return custLname;
+    }
+
+    public void setCustLname(String custLname) {
+        this.custLname = custLname;
+    }
+
+    @OneToMany(mappedBy = "ordDate", cascade = CascadeType.ALL)
+    public Set<Orders> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Set<Orders> orders) {
+        this.orders = orders;
     }
 
     @Override
     public String toString() {
         return "Customer{" +
-                "custID='" + custID + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
+                "custID='" + custId + '\'' +
+                ", firstName='" + custFname + '\'' +
+                ", lastName='" + custLname + '\'' +
                 ", custPswd='" + custPswd + '\'' +
                 ", pswdSalt='" + pswdSalt + '\'' +
                 '}';

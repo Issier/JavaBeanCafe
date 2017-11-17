@@ -10,7 +10,7 @@ import javax.persistence.Id;
 public class MenuItem {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long itemID;
+    private Long itemId;
     private String itemName;
     private double itemCost;
     private Long itemQty;
@@ -25,12 +25,12 @@ public class MenuItem {
         this.healthFacts = healthFacts;
     }
 
-    public Long getItemID() {
-        return itemID;
+    public Long getItemId() {
+        return itemId;
     }
 
-    public void setItemID(Long itemID) {
-        this.itemID = itemID;
+    public void setItemId(Long itemId) {
+        this.itemId = itemId;
     }
 
     public String getItemName() {
@@ -68,7 +68,7 @@ public class MenuItem {
     @Override
     public String toString() {
         return "MenuItem{" +
-                "itemID=" + itemID +
+                "itemID=" + itemId +
                 ", itemName='" + itemName + '\'' +
                 ", itemCost=" + itemCost +
                 ", itemQty=" + itemQty +
