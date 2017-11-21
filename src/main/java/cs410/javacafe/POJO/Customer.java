@@ -1,17 +1,19 @@
 package cs410.javacafe.POJO;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 @Entity(name="customer")
 @Table(name = "customer")
-public class Customer {
+public class Customer implements Serializable{
     private String custId;
     private String custFname;
     private String custLname;
     private String custPswd;
     private String pswdSalt;
-    private Set<Orders> orders;
+    private List<Vote> votes;
 
     protected Customer(){
     }
@@ -66,13 +68,13 @@ public class Customer {
         this.custLname = custLname;
     }
 
-    @OneToMany(mappedBy = "ordDate", cascade = CascadeType.ALL)
-    public Set<Orders> getOrders() {
-        return orders;
+    @OneToMany(mappedBy = "voteCust", cascade = CascadeType.ALL)
+    public List<Vote> getVotes() {
+        return votes;
     }
 
-    public void setOrders(Set<Orders> orders) {
-        this.orders = orders;
+    public void setVotes(List<Vote> votes) {
+        this.votes = votes;
     }
 
     @Override

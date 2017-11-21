@@ -1,20 +1,20 @@
 package cs410.javacafe.POJO;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.List;
+import java.util.Set;
 
 @Entity
-public class MenuItem {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+public class MenuItem implements Serializable{
     private Long itemId;
     private String itemName;
     private double itemCost;
     private Long itemQty;
     private String healthFacts;
+    private List<Vote> votes;
+
 
     protected MenuItem(){}
 
@@ -25,6 +25,8 @@ public class MenuItem {
         this.healthFacts = healthFacts;
     }
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getItemId() {
         return itemId;
     }
@@ -63,6 +65,15 @@ public class MenuItem {
 
     public void setHealthFacts(String healthFacts) {
         this.healthFacts = healthFacts;
+    }
+
+    @OneToMany(mappedBy = "voteBevr", cascade = CascadeType.ALL)
+    public List<Vote> getVotes() {
+        return votes;
+    }
+
+    public void setVotes(List<Vote> votes) {
+        this.votes = votes;
     }
 
     @Override
