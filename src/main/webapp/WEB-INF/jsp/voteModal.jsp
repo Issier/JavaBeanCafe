@@ -1,3 +1,5 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!-- Modal -->
 <div class="modal fade" id="voteModal" tabindex="-1" role="dialog" aria-labelledby="voteModalLabel" aria-hidden="true">
@@ -9,13 +11,23 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                ...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Vote</button>
-            </div>
+            <form id="voteForm" method="post">
+                <div class="modal-body">
+                        <c:forEach var="bevr" items="${voteOption}">
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="radio" name="voteItems"
+                                           id="${bevr.getItemId()}" value="${bevr.getItemId()}">
+                                    ${bevr.getItemName()}
+                                </label>
+                            </div>
+                        </c:forEach>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" form="voteForm" formaction="/" class="btn btn-primary">Vote</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

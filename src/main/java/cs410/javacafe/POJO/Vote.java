@@ -20,8 +20,7 @@ public class Vote{
     protected Vote(){
     }
 
-    public Vote(int voteSeq, Customer voteCust, MenuItem voteBevr) {
-        this.voteSeq = voteSeq;
+    public Vote(Customer voteCust, MenuItem voteBevr) {
         this.voteCust = voteCust;
         this.voteBevr = voteBevr;
     }

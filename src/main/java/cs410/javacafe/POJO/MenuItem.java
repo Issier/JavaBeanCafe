@@ -10,18 +10,18 @@ import java.util.Set;
 public class MenuItem implements Serializable{
     private Long itemId;
     private String itemName;
+    private String itemType;
     private double itemCost;
-    private Long itemQty;
     private String healthFacts;
     private List<Vote> votes;
 
 
     protected MenuItem(){}
 
-    public MenuItem(String itemName, double itemCost, Long itemQty, String healthFacts) {
+    public MenuItem(String itemName, String itemType, double itemCost, String healthFacts) {
         this.itemName = itemName;
+        this.itemType = itemType;
         this.itemCost = itemCost;
-        this.itemQty = itemQty;
         this.healthFacts = healthFacts;
     }
 
@@ -43,20 +43,20 @@ public class MenuItem implements Serializable{
         this.itemName = itemName;
     }
 
+    public String getItemType() {
+        return itemType;
+    }
+
+    public void setItemType(String itemType) {
+        this.itemType = itemType;
+    }
+
     public double getItemCost() {
         return itemCost;
     }
 
     public void setItemCost(double itemCost) {
         this.itemCost = itemCost;
-    }
-
-    public Long getItemQty() {
-        return itemQty;
-    }
-
-    public void setItemQty(Long itemQty) {
-        this.itemQty = itemQty;
     }
 
     public String getHealthFacts() {
@@ -82,7 +82,6 @@ public class MenuItem implements Serializable{
                 "itemID=" + itemId +
                 ", itemName='" + itemName + '\'' +
                 ", itemCost=" + itemCost +
-                ", itemQty=" + itemQty +
                 ", healthFacts='" + healthFacts + '\'' +
                 '}';
     }

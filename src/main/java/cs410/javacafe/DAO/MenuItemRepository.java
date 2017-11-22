@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface MenuItemRepository extends JpaRepository<MenuItem, Long> {
     List<MenuItem> findMenuItemByItemName(String itemName);
+    List<MenuItem> findMenuItemByItemType(String itemType);
 }
