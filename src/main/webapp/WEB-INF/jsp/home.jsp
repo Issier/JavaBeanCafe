@@ -1,26 +1,27 @@
 <!DOCTYPE html>
-<%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <html lang="english">
     <head>
         <title>Java-Bean Cafe</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-        <c:url var="jstlCSS" value="/css/homeStyle.css"/>
-        <c:url var="menuImg" value="/images/menu.png"/>
-        <c:url var="surveyImg" value="/images/survey.jpg"/>
-        <c:url var="coffee1" value="/images/coffee1.jpg"/>
-        <c:url var="coffee2" value="/images/coffee2.jpg"/>
-        <c:url var="coffee3" value="/images/coffee3.jpg"/>
-        <link rel="stylesheet" href="${jstlCSS}"/>
+        <link rel="stylesheet" href="/css/homeStyle.css"/>
     </head>
     <body>
         <header id="title" class="container-fluid" style="padding-bottom: 40px">
-            <ul class="nav">
-                <li class="nav-item"><a class="nav-link" id="register" href="">Register</a></li>
-                <li class="nav-item"><a class="nav-link" id="login" href="">Login</a></li>
-            </ul>
+                <ul class="nav">
+                    <sec:authorize access="isAnonymous()">
+                        <li class="nav-item"><a data-toggle="modal" class="btn btn-primary" id="register" href="#" data-target="#registerModal">Register</a></li>
+                        <li class="nav-item"><a class="nav-link" id="login" href="/login">Login</a></li>
+                    </sec:authorize>
+
+                    <sec:authorize access="isAuthenticated()">
+                            <li class="nav-item"><a class="btn btn-primary" id="logout" href="/logout" >Logout</a></li>
+                    </sec:authorize>
+                </ul>
             <div id="logoTitle" class="row align-items-center">
                 <div class="col"></div>
                 <div class="col">
@@ -33,12 +34,13 @@
         <jsp:include page="menuModal.jsp"/>
         <jsp:include page="voteModal.jsp"/>
         <jsp:include page="contactModal.jsp"/>
+        <jsp:include page="RegisterModal.jsp"/>
         <section id="mainBody" class="container-fluid">
             <div class="row align-items-center">
                 <div class="col"></div>
                 <div class="col" align="center">
                     <div id="menu" class="card" style="width: 20rem;">
-                        <img class="card-img-top" src="${menuImg}" alt="Menu">
+                        <img class="card-img-top" src="resources/menu.png" alt="Menu">
                         <div class="card-body">
                             <h4 class="card-title">Menu</h4>
                             <p class="card-text">Check and see what's brewin' at the Java Cafe. Lorem Ipsum Dolor</p>
@@ -48,7 +50,7 @@
                 </div>
                 <div class="col" align="center">
                     <div id="coffeeVote" class="card" style="width: 20rem;">
-                        <img class="card-img-top" src="${surveyImg}" alt="Vote Ballot">
+                        <img class="card-img-top" src="resources/survey.jpg" alt="Vote Ballot">
                         <div class="card-body">
                             <h4 class="card-title">Coffee of the Week</h4>
                             <p class="card-text">Got a preference as strong as our coffee? Vote and be heard</p>
@@ -58,7 +60,7 @@
                 </div>
                 <div class="col" align="center">
                     <div id="contact" class="card" style="width: 20rem;">
-                        <img class="card-img-top" src="${menuImg}" alt="Envelope">
+                        <img class="card-img-top" src="resources/menu.png" alt="Envelope">
                         <div class="card-body">
                             <h4 class="card-title">Contact Us</h4>
                             <p class="card-text">Want to get in touch? Send us a message and tell us how we're doing!</p>
@@ -80,13 +82,13 @@
                         </ol>
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img class="d-block img-fluid" src="${coffee1}" alt="Cup of Coffee">
+                                <img class="d-block img-fluid" src="resources/coffee1.jpg" alt="Cup of Coffee">
                             </div>
                             <div class="carousel-item">
-                                <img class="d-block img-fluid" src="${coffee2}" alt="Cup of Coffee">
+                                <img class="d-block img-fluid" src="resources/coffee2.jpg" alt="Cup of Coffee">
                             </div>
                             <div class="carousel-item">
-                                <img class="d-block img-fluid" src="${coffee3}" alt="Cup of Coffee">
+                                <img class="d-block img-fluid" src="resources/coffee3.jpg" alt="Cup of Coffee">
                             </div>
                         </div>
                         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">

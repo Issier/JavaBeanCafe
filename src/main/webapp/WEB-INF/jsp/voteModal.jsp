@@ -25,7 +25,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" form="voteForm" formaction="/" class="btn btn-primary">Vote</button>
+                    <button type="submit" form="voteForm" formaction="/vote" class="btn btn-primary">Vote</button>
                 </div>
             </form>
         </div>

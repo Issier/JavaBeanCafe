@@ -7,5 +7,5 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 public interface CustomerRepository extends JpaRepository<Customer, String> {
-    List<Customer> findByCustId(String userId);
+    Customer findByCustId(String userId);
 }

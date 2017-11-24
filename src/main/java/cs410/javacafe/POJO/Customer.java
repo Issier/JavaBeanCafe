@@ -12,18 +12,16 @@ public class Customer implements Serializable{
     private String custFname;
     private String custLname;
     private String custPswd;
-    private String pswdSalt;
     private List<Vote> votes;
 
     protected Customer(){
     }
 
-    public Customer(String custId, String firstName, String lastName, String custPswd, String pswdSalt) {
+    public Customer(String custId, String firstName, String lastName, String custPswd) {
         this.custId = custId;
         this.custFname = firstName;
         this.custLname = lastName;
         this.custPswd = custPswd;
-        this.pswdSalt = pswdSalt;
     }
 
     public String getCustPswd() {
@@ -32,14 +30,6 @@ public class Customer implements Serializable{
 
     public void setCustPswd(String custPswd) {
         this.custPswd = custPswd;
-    }
-
-    public String getPswdSalt() {
-        return pswdSalt;
-    }
-
-    public void setPswdSalt(String pswdSalt) {
-        this.pswdSalt = pswdSalt;
     }
 
     @Id
@@ -84,7 +74,6 @@ public class Customer implements Serializable{
                 ", firstName='" + custFname + '\'' +
                 ", lastName='" + custLname + '\'' +
                 ", custPswd='" + custPswd + '\'' +
-                ", pswdSalt='" + pswdSalt + '\'' +
                 '}';
     }
 }

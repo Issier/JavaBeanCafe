@@ -1,5 +1,5 @@
 body{
-    background: maroon url("../images/cherryTable.jpg");
+    background: maroon url("../resources/cherryTable.jpg");
     color: white;
 }
 
@@ -8,18 +8,18 @@ body{
 }
 
 #title, #menu, #coffeeVote, #contact, #carouselBody{
-    background: #000000 url("../images/board.jpg");
+    background: #000000 url("../resources/board.jpg");
     background-size: cover;
 }
 
 .modal{
     color: white;
-    background: maroon url("../images/cherryTable.jpg");
+    background: maroon url("../resources/cherryTable.jpg");
     background-size: cover;
 }
 
 .modal-content{
-    background: black url("../images/board.jpg");
+    background: black url("../resources/board.jpg");
 }
 
 .card-img-top{
