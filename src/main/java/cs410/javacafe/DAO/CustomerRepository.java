@@ -6,6 +6,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
-public interface CustomerRepository extends JpaRepository<Customer, String> {
-    Customer findByCustId(String userId);
+public interface CustomerRepository extends JpaRepository<Customer, Long> {
+    Customer findCustomerByCustId(String userId);
 }

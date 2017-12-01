@@ -8,19 +8,16 @@ import java.util.Set;
 @Entity(name="customer")
 @Table(name = "customer")
 public class Customer implements Serializable{
+    private Long id;
     private String custId;
-    private String custFname;
-    private String custLname;
     private String custPswd;
     private List<Vote> votes;
 
     protected Customer(){
     }
 
-    public Customer(String custId, String firstName, String lastName, String custPswd) {
+    public Customer(String custId, String custPswd) {
         this.custId = custId;
-        this.custFname = firstName;
-        this.custLname = lastName;
         this.custPswd = custPswd;
     }
 
@@ -33,6 +30,15 @@ public class Customer implements Serializable{
     }
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     @Column(name="cust_id")
     public String getCustId() {
         return custId;
@@ -40,22 +46,6 @@ public class Customer implements Serializable{
 
     public void setCustId(String custId) {
         this.custId = custId;
-    }
-
-    public String getCustFname() {
-        return custFname;
-    }
-
-    public void setCustFname(String custFname) {
-        this.custFname = custFname;
-    }
-
-    public String getCustLname() {
-        return custLname;
-    }
-
-    public void setCustLname(String custLname) {
-        this.custLname = custLname;
     }
 
     @OneToMany(mappedBy = "voteCust", cascade = CascadeType.ALL)
@@ -71,8 +61,6 @@ public class Customer implements Serializable{
     public String toString() {
         return "Customer{" +
                 "custID='" + custId + '\'' +
-                ", firstName='" + custFname + '\'' +
-                ", lastName='" + custLname + '\'' +
                 ", custPswd='" + custPswd + '\'' +
                 '}';
     }

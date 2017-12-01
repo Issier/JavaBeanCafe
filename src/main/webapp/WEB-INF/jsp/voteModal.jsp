@@ -6,13 +6,13 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Coffee of the Week</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Beverage of the Week</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form id="voteForm" method="post">
                 <div class="modal-body">
+                    <form id="voteForm" method="post">
                         <c:forEach var="bevr" items="${voteOption}">
                             <div class="form-check">
                                 <label class="form-check-label">
@@ -22,12 +22,17 @@
                                 </label>
                             </div>
                         </c:forEach>
+                    </form>
+                    <h3>Results</h3>
+                    <c:forEach var="entry" items="${voteResults}">
+                        Beverage: <c:out value="${entry.key.getItemName()}"/>
+                        - <c:out value="${entry.value}"/><br>
+                    </c:forEach>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="submit" form="voteForm" formaction="/vote" class="btn btn-primary">Vote</button>
                 </div>
-            </form>
         </div>
     </div>
 </div>

@@ -4,6 +4,7 @@ import cs410.javacafe.DAO.CustomerRepository;
 import cs410.javacafe.DAO.MenuItemRepository;
 import cs410.javacafe.DAO.VoteRepository;
 import cs410.javacafe.POJO.Customer;
+import cs410.javacafe.POJO.MenuItem;
 import cs410.javacafe.POJO.Vote;
 import cs410.javacafe.Processing.PassHash;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.awt.*;
+import java.util.*;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @org.springframework.stereotype.Controller
 public class Controller {
@@ -39,6 +45,14 @@ public class Controller {
 
     @PostMapping("/vote")
     public String processVote(@RequestParam("voteItems")long checked){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String userName = authentication.getName();
+
+        voteRepository.save(new Vote(
+                customerRepository.findOne(1L),
+                menuItemRepository.findOne(checked)
+        ));
+
         return "redirect:/";
     }
 
@@ -52,8 +66,8 @@ public class Controller {
                                             @RequestParam("passwd") String unhashedPass,
                                             @RequestParam("renterpass") String renteredPass){
         //TODO Validation Code Here
-        if(customerRepository.findOne(name) == null){
-            Customer newCustomer = new Customer(name, "John", "Doe", unhashedPass);
+        if(customerRepository.findCustomerByCustId(name) == null){
+            Customer newCustomer = new Customer(name, unhashedPass);
             PassHash hash = new PassHash(unhashedPass);
             newCustomer.setCustPswd(hash.getHashedPass());
             customerRepository.save(newCustomer);
@@ -84,7 +98,9 @@ public class Controller {
         ModelAndView homeView = new ModelAndView("home");
         homeView.addObject("menu", menuItemRepository.findAll());
         homeView.addObject("voteOption", menuItemRepository.findMenuItemByItemType("Beverage"));
+        List<Vote> votes = voteRepository.findAll();
+        Map<MenuItem, Long> occurences = votes.stream().collect(Collectors.groupingBy(Vote::getVoteBevr, Collectors.counting()));
+        homeView.addObject("voteResults", occurences);
         return homeView;
     }
-
 }

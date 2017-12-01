@@ -52,7 +52,7 @@
                     <div id="coffeeVote" class="card" style="width: 20rem;">
                         <img class="card-img-top" src="resources/survey.jpg" alt="Vote Ballot">
                         <div class="card-body">
-                            <h4 class="card-title">Coffee of the Week</h4>
+                            <h4 class="card-title">Beverage of the Week</h4>
                             <p class="card-text">Got a preference as strong as our coffee? Vote and be heard</p>
                             <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#voteModal">Go</a>
                         </div>
