@@ -8,6 +8,11 @@ import cs410.javacafe.POJO.Vote;
 import cs410.javacafe.Processing.PassHash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +29,8 @@ public class Controller {
     VoteRepository voteRepository;
     @Autowired
     CustomerRepository customerRepository;
+    @Autowired
+    JavaMailSender emailSender;
 
     @RequestMapping("/")
     public ModelAndView home(){
@@ -51,6 +58,20 @@ public class Controller {
             newCustomer.setCustPswd(hash.getHashedPass());
             customerRepository.save(newCustomer);
         }
+        return "redirect:/";
+    }
+
+    @PostMapping("/contact")
+    public String contactUs(@RequestParam("subject") String subject,
+                            @RequestParam("message") String body){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String userName = authentication.getName();
+
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo("javaspringcafe@gmail.com");
+        message.setSubject(subject);
+        message.setText("Username: " + userName + " | Message:" + body);
+        emailSender.send(message);
         return "redirect:/";
     }
 

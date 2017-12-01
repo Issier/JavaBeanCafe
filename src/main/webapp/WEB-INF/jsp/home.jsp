@@ -60,7 +60,7 @@
                 </div>
                 <div class="col" align="center">
                     <div id="contact" class="card" style="width: 20rem;">
-                        <img class="card-img-top" src="resources/menu.png" alt="Envelope">
+                        <img class="card-img-top" src="resources/email.jpg" alt="Envelope">
                         <div class="card-body">
                             <h4 class="card-title">Contact Us</h4>
                             <p class="card-text">Want to get in touch? Send us a message and tell us how we're doing!</p>
